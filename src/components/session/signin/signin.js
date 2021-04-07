@@ -1,9 +1,8 @@
 import React, { Component } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 
 import * as actions from "../../../store/actions/index";
-import axiosInstance from "../../../axios.config";
 
 import "./signin.css";
 class SignIn extends Component {
@@ -18,7 +17,7 @@ class SignIn extends Component {
   componentDidMount() {
     // console.log('Component Mount');
   }
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps) {
     if (prevProps.error !== this.props.error) {
       this.setState({
         ...this.state,
@@ -122,7 +121,7 @@ class SignIn extends Component {
               </button>
             </form>
             <h6>
-              You don't have an account ? Please click here{" "}
+              You dont have an account ? Please click here{" "}
               <NavLink to={"/sign-up"}>Sign Up</NavLink>
             </h6>
             {errorMessage}

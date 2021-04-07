@@ -1,12 +1,7 @@
-import React, { Component, Fragment } from "react";
+import React from "react";
 import "./side-menu.css";
 import { MENUS } from "../../../components/constants/menus.js";
-import {
-  BrowserRouter as Router,
-  Route,
-  Link,
-  NavLink
-} from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const sideMenu = () => {
   const menus = MENUS;

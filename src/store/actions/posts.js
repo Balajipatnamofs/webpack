@@ -1,7 +1,7 @@
 import * as actionTypes from "../../components/constants/actionTypes";
 import axiosInstance from "../../axios.config";
 
-export const addPost = (postObj, postId) => ({
+export const addPost = (postObj) => ({
   type: actionTypes.ADD_POST,
   postObj: postObj
 });

@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from "react";
 class PaperInput extends Component {
   constructor(props) {
-    console.log(props);
     this.state = {
       modelValue: props.name ? props.name : ""
     };

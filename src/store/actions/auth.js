@@ -1,5 +1,4 @@
 import * as actionTypes from "../../components/constants/actionTypes";
-import axiosInstance from "../../axios.config";
 
 export const loginSuccess = (isAuth) => {
   return {
@@ -13,7 +12,7 @@ export const loginError = (error) => {
     error: error
   };
 };
-export const logout = (isAuth) => {
+export const logout = () => {
   return (dispatch) => {
     localStorage.removeItem("auth");
     dispatch(loginSuccess(false));
@@ -22,7 +21,7 @@ export const logout = (isAuth) => {
     };
   };
 };
-export const loginUser = (req) => {
+export const loginUser = () => {
   return (dispatch) => {
     localStorage.setItem("auth", true);
     dispatch(loginSuccess(true));

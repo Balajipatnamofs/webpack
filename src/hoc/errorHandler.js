@@ -6,7 +6,7 @@ const errorHandler = (WarrapperComponent, axios) => {
     state = {
       error: null
     };
-    componentWillMount() {
+    unsafe_componentwillmount() {
       this.reqInterceptor = axios.interceptors.request.use((req) => {
         this.setState({ error: null });
         return req;

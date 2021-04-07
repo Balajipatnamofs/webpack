@@ -1,19 +1,15 @@
 // import { SnackbarProvider, withSnackbar } from 'notistack';
 import { connect } from "react-redux";
 import React, { Component, Fragment } from "react";
-import ReactDOM from "react-dom";
-import errorHandler from "../../hoc/errorHandler";
 import "./post-list.css";
 
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
-import TextField from "@material-ui/core/TextField";
 
 import Alert from "../../components/UI/dialog/alert-dialog";
 import AddPost from "../../components/post/add-post/add-post";
 import * as actions from "../../store/actions/index";
 import PageSpinner from "../../components/UI/spinner/spinner";
-import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 import { Observable } from "rxjs";
 
@@ -32,7 +28,7 @@ class PostList extends Component {
       isUpdatePost: true
     };
   }
-  componentWillMount() {
+  unsafe_componentwillmount() {
     this.props.getAllPosts();
     setTimeout(() => {
       this.setState({
@@ -51,7 +47,7 @@ class PostList extends Component {
       }, 1000);
     });
 
-    observable.subscribe((value) => console.log(value));
+    observable.subscribe((value) => value);
   }
   deletePost = (event, param, param1) => {
     if (event) {
@@ -126,7 +122,7 @@ class PostList extends Component {
         <section className="post-list">
           <div className="row">
             <div className="col-lg-7 col-sm-7 col-md-7 col-xs-7">
-              <Card className="post-table" ref="myInput">
+              <Card className="post-table">
                 {!this.state.isBusy ? (
                   <CardContent>
                     <table className="table table-striped">

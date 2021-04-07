@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "../signin/signin.css";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import axiosInstance from "../../../axios.config";
 class SignUp extends Component {
   constructor(props) {
@@ -64,7 +64,7 @@ class SignUp extends Component {
             axiosInstance.defaults.authKey,
           req
         )
-        .then((result) => {
+        .then(() => {
           this.props.history.push("/sign-in");
         })
         .catch((error) => {

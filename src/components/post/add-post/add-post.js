@@ -1,16 +1,13 @@
 import React, { Component } from "react";
 import { withStyles } from "@material-ui/core/styles";
-import { connect } from "react-redux";
 
 import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
-import CardHeader from "@material-ui/core/CardHeader";
 import TextField from "@material-ui/core/TextField";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
-// import axiosInstance from 'axios.config.js';
-const styles = (theme) => ({
+const styles = () => ({
   wrapper: {
     margin: "10px 0px",
     position: "relative"
@@ -24,7 +21,7 @@ const styles = (theme) => ({
   }
 });
 class AddPost extends Component {
-  constructor(props) {
+  constructor() {
     super();
     this.state = {
       addPost: {
@@ -37,7 +34,7 @@ class AddPost extends Component {
       isSavePost: true
     };
   }
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps) {
     document.title = "add-post";
     if (prevProps.prePostData !== this.props.prePostData) {
       if (this.props.prePostData) {
@@ -79,7 +76,7 @@ class AddPost extends Component {
             }
             this.resetForm();
           },
-          (error) => {
+          () => {
             // console.log(error);
           }
         );
@@ -123,7 +120,7 @@ class AddPost extends Component {
     });
   }
   render() {
-    const { loading, success } = this.state;
+    const { loading } = this.state;
     const { classes } = this.props;
     const savePostText = this.state.isSavePost ? "Save Post" : "Update Post";
     return (

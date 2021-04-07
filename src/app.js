@@ -5,14 +5,12 @@ import {
   Redirect
 } from "react-router-dom";
 import React, { Component, Fragment } from "react";
-import axios from "axios";
 import { connect } from "react-redux";
 
 import * as actions from "./store/actions/index";
 import * as lazy from "./components/constants/lazy-pages";
 import NavBarComponent from "./components/UI/nav-bar/nav-bar";
 import SideMenu from "./components/UI/side-menu/side-menu";
-import PageNotFound from "./components/404/404";
 import Alert from "./components/UI/dialog/alert-dialog";
 import "./style.scss";
 

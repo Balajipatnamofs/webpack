@@ -1,6 +1,5 @@
 import * as actionTypes from "../../components/constants/actionTypes";
 import { updateObject } from "../utility";
-import { push } from "react-router-redux";
 
 const initState = {
   isAuth: false

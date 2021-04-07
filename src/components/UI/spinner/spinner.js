@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { withStyles } from "@material-ui/core/styles";
-const styles = (theme) => ({
+const styles = () => ({
   wrapper: {
     margin: "10px 0px",
     position: "relative"
@@ -15,9 +15,6 @@ const styles = (theme) => ({
   }
 });
 class PageSpinner extends Component {
-  constructor() {
-    super();
-  }
   render() {
     const { classes } = this.props;
     const showLoader = this.props.isShowLoader ? (
