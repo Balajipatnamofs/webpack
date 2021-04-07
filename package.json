@@ -31,17 +31,15 @@
     "format": "prettier --write src/**/*.{js,jsx}",
     "lint": "eslint src/**/*.{js,jsx} --fix"
   },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "lint-staged",
+      "pre-push": "npm test"
     }
   },
   "lint-staged": {
-    "*.(js)": [
-      "npm run lint",
+    "*.ts": [
+      "tslint",
       "prettier --write",
       "git add"
     ]
