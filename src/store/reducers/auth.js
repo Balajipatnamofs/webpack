@@ -1,6 +1,6 @@
-import * as actionTypes from '../../components/constants/actionTypes';
-import { updateObject } from '../utility';
-import { push } from 'react-router-redux';
+import * as actionTypes from "../../components/constants/actionTypes";
+import { updateObject } from "../utility";
+import { push } from "react-router-redux";
 
 const initState = {
   isAuth: false
@@ -30,8 +30,8 @@ const auth = (state = initState, action) => {
     case actionTypes.LOGOUT:
       return logout(state, action);
     default:
-      return state
+      return state;
   }
-}
+};
 
-export default auth
+export default auth;

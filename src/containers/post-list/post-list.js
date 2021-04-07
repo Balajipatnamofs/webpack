@@ -26,10 +26,10 @@ class PostList extends Component {
       openDialog: false,
       dialogData: {
         msg: "Do you want to delete?",
-        title: "DELETE",
+        title: "DELETE"
       },
       prePostData: null,
-      isUpdatePost: true,
+      isUpdatePost: true
     };
   }
   componentWillMount() {
@@ -37,7 +37,7 @@ class PostList extends Component {
     setTimeout(() => {
       this.setState({
         ...this.state,
-        isBusy: false,
+        isBusy: false
       });
     }, 1000);
   }
@@ -66,7 +66,7 @@ class PostList extends Component {
     } else {
       this.setState({
         ...this.state,
-        openDialog: true,
+        openDialog: true
       });
     }
   };
@@ -76,7 +76,7 @@ class PostList extends Component {
     post = post[index];
     this.setState({
       ...this.state,
-      prePostData: post,
+      prePostData: post
     });
   }
   selectPost(val) {
@@ -167,7 +167,7 @@ class PostList extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    posts: state.posts.posts,
+    posts: state.posts.posts
   };
 };
 const mapDispatchToProps = (dispatch) => {
@@ -175,7 +175,7 @@ const mapDispatchToProps = (dispatch) => {
     addPost: (event) => dispatch(actions.addPost(event)),
     updatePost: (event) => dispatch(actions.updatePost(event)),
     getAllPosts: () => dispatch(actions.getPosts()),
-    deletePost: (postId) => dispatch(actions.deletePost(postId)),
+    deletePost: (postId) => dispatch(actions.deletePost(postId))
   };
 };
 

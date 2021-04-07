@@ -8,7 +8,7 @@ class UserList extends Component {
     super();
     this.state = {
       pdfFile:
-        "https://webfacedev-assets.s3.amazonaws.com/public/Whitepaper/801000000_Whitepaper_R3%20Corda%20Case%20Study.pdf",
+        "https://webfacedev-assets.s3.amazonaws.com/public/Whitepaper/801000000_Whitepaper_R3%20Corda%20Case%20Study.pdf"
     };
   }
   render() {

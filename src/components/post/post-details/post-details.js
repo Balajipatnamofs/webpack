@@ -14,7 +14,7 @@ class PostDetail extends Component {
   constructor() {
     super();
     this.state = {
-      details: null,
+      details: null
     };
   }
   componentDidMount() {
@@ -28,8 +28,8 @@ class PostDetail extends Component {
         method: "GET",
         headers: {
           Accept: "application/json",
-          "Content-Type": "application/json",
-        },
+          "Content-Type": "application/json"
+        }
       }
     )
       .then((res) => res.json())
@@ -37,7 +37,7 @@ class PostDetail extends Component {
         (result) => {
           this.setState({
             ...this.state,
-            details: result,
+            details: result
           });
         },
         (error) => {
@@ -66,7 +66,7 @@ class PostDetail extends Component {
               style={{
                 display: "flex",
                 flexDirection: "row",
-                alignItems: "center",
+                alignItems: "center"
               }}
             >
               <Link to="/post-list">

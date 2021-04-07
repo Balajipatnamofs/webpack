@@ -4,15 +4,15 @@ import { withStyles } from "@material-ui/core/styles";
 const styles = (theme) => ({
   wrapper: {
     margin: "10px 0px",
-    position: "relative",
+    position: "relative"
   },
   buttonProgress: {
     position: "absolute",
     top: "50%",
     left: "50%",
     marginTop: -12,
-    marginLeft: -12,
-  },
+    marginLeft: -12
+  }
 });
 class PageSpinner extends Component {
   constructor() {
@@ -31,7 +31,7 @@ class PageSpinner extends Component {
             height: "100vh",
             zIndex: "10",
             opacity: "0.6",
-            backgroundColor: "rgba(0, 0, 0, 0.5)",
+            backgroundColor: "rgba(0, 0, 0, 0.5)"
           }}
         ></div>
         <div
@@ -49,7 +49,7 @@ class PageSpinner extends Component {
             alignItems: "center",
             justifyContent: "center",
             boxShadow:
-              "0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12)",
+              "0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12)"
           }}
         >
           <CircularProgress size={24} className={classes.buttonProgress} />

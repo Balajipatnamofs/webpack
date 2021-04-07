@@ -13,7 +13,7 @@
 //   }
 //   render() {
 //     return (<Aox><Router><Switch>
-     
+
 //       <div className="main-content">
 //         <NavBarComponent />
 //         <SideMenu />

@@ -13,15 +13,15 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 const styles = (theme) => ({
   wrapper: {
     margin: "10px 0px",
-    position: "relative",
+    position: "relative"
   },
   buttonProgress: {
     position: "absolute",
     top: "50%",
     left: "50%",
     marginTop: -12,
-    marginLeft: -12,
-  },
+    marginLeft: -12
+  }
 });
 class AddPost extends Component {
   constructor(props) {
@@ -30,11 +30,11 @@ class AddPost extends Component {
       addPost: {
         title: "",
         body: "",
-        userId: 1,
+        userId: 1
       },
       errors: {},
       loading: false,
-      isSavePost: true,
+      isSavePost: true
     };
   }
   componentDidUpdate(prevProps, prevState) {
@@ -45,7 +45,7 @@ class AddPost extends Component {
         this.setState({
           ...this.state,
           addPost: post,
-          isSavePost: false,
+          isSavePost: false
         });
       }
     }
@@ -62,9 +62,9 @@ class AddPost extends Component {
         method: "POST",
         headers: {
           Accept: "application/json",
-          "Content-Type": "application/json",
+          "Content-Type": "application/json"
         },
-        body: JSON.stringify(this.state.addPost),
+        body: JSON.stringify(this.state.addPost)
       })
         .then((res) => res.json())
         .then(
@@ -80,7 +80,7 @@ class AddPost extends Component {
             this.resetForm();
           },
           (error) => {
-            //console.log(error);
+            // console.log(error);
           }
         );
     }
@@ -90,10 +90,10 @@ class AddPost extends Component {
       ...this.state,
       addPost: {
         title: "",
-        body: "",
+        body: ""
       },
       loading: false,
-      isSavePost: true,
+      isSavePost: true
     });
   };
   validatePost() {
@@ -119,7 +119,7 @@ class AddPost extends Component {
     this.setState({
       ...this.state,
       addPost,
-      errors,
+      errors
     });
   }
   render() {

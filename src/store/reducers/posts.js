@@ -1,23 +1,21 @@
-import * as actionTypes from '../../components/constants/actionTypes';
-import { updateObject } from '../utility';
+import * as actionTypes from "../../components/constants/actionTypes";
+import { updateObject } from "../utility";
 
 const addPost = (state, action) => {
-  let oldPosts = [
-    ...state.posts
-  ]
+  let oldPosts = [...state.posts];
   oldPosts.push({
-    id: Math.trunc((Math.random() * 1000) + 101),
+    id: Math.trunc(Math.random() * 1000 + 101),
     userId: action.postObj.userId,
     title: action.postObj.title,
     body: action.postObj.body
-  })
+  });
   return updateObject(state, {
     posts: oldPosts
   });
-}
+};
 const updatePost = (state, action) => {
   let prevPosts = [...state.posts];
-  let newPosts = prevPosts.map(val => {
+  let newPosts = prevPosts.map((val) => {
     if (val.id === action.postObj.id) {
       val = action.postObj;
     }
@@ -26,16 +24,16 @@ const updatePost = (state, action) => {
   return updateObject(state, {
     posts: newPosts
   });
-}
+};
 const deletePost = (state, action) => {
   let posts = [...state.posts];
-  posts = posts.filter(val => {
+  posts = posts.filter((val) => {
     return val.id != action.postId;
   });
   return updateObject(state, {
     posts: posts
   });
-}
+};
 const fetchPostsSuccess = (state, action) => {
   return updateObject(state, {
     posts: action.posts
@@ -56,8 +54,8 @@ const posts = (state = initPosts, action) => {
     case actionTypes.DELETE_POST:
       return deletePost(state, action);
     default:
-      return state
+      return state;
   }
-}
+};
 
-export default posts
+export default posts;

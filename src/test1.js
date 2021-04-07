@@ -16,8 +16,6 @@
 // import { reactLocalStorage } from "reactjs-localstorage";
 // import { func } from "prop-types";
 
-
-
 // class CreateContent extends Component {
 //     constructor(props) {
 //         super(props);
@@ -58,12 +56,12 @@
 //             content_name_error: false,
 //             content_name_helperText: '',
 //             fileError: false,
-//             userInfo: {}, 
+//             userInfo: {},
 //             currentTags: [],
 //             parentTags: [],
 //             allContents: []
 //         };
-        
+
 //     }
 //     componentDidMount(){
 //         let user = reactLocalStorage.getObject('cognitoUser');
@@ -93,14 +91,14 @@
 //         resolve.then(function (res){
 //             if (res && res.parents && res.parents.length) {
 //                 let child = res.parents[0];
-//                 this.setState({childContents: res[child].child})   
+//                 this.setState({childContents: res[child].child})
 //             }
 //         }.bind(this))
 //     }
 //     doGetContents() {
 //         let promise = getContents()
 //         promise.then(function(resData) {
-//             let response = {}; 
+//             let response = {};
 //             Object.assign(response, resData);
 //             this.setState({'allContents': resData});
 //             /**edit Prepopulation **/
@@ -123,7 +121,7 @@
 //                                 }
 //                                 content.tags = uniqBy(content.tags);
 //                                 this.setState({content, parentTags: res});
-                                
+
 //                             }.bind(this))
 //                         }
 //                     }
@@ -150,7 +148,7 @@
 //         promise.then(function(resData){
 //             this.setState({ contentType: resData });
 //         }.bind(this))
-//     }    
+//     }
 //     doGetTags() {
 //         let promise = getTags()
 //         promise.then(function(resData){
@@ -164,7 +162,7 @@
 
 //     checkMandatoryFields() {
 //         const {content} = this.state;
-//         if (content.content_name && 
+//         if (content.content_name &&
 //             content.content_desc && content.content_type &&
 //             content.tags && content.tags.length && content.public_content_url) {
 //                 if(content.has_parent === 'false'){
@@ -208,7 +206,7 @@
 //                 }
 //             } else {
 //                 if (actualContent[i].content_type === 'Story') {
-//                     parent.push(actualContent[i]);    
+//                     parent.push(actualContent[i]);
 //                 }
 //             }
 //         }
@@ -341,7 +339,7 @@
 //                 showFile = false;
 //                 this.setState({urlHelperText: 'UnSupported File Format', fileError: true});
 //             }
-//         } else if ((file && this.state.content.content_type === 'Whitepaper') ||(file &&  
+//         } else if ((file && this.state.content.content_type === 'Whitepaper') ||(file &&
 //             this.state.content.content_type === 'Presentation')) {
 //             this.setState({urlHelperText: 'Supports only Pdf', fileError: false});
 //             if (file && !supportedPdfFiles.includes(file.type)) {
@@ -384,7 +382,7 @@
 //        let state = {...this.state};
 //        state.content.publish_to_site = event.target.value
 //        this.setState({
-//            ...state          
+//            ...state
 //        });
 //     }
 //     onLoadChildContent(event) {
@@ -400,7 +398,7 @@
 //             this.handleContentTypeChange()
 //             if (this.state.content.parent) {
 //                 const {content} = this.state;
-                
+
 //                 content.has_parent = "true";
 //                 content.publish_to_site = "false";
 //                 for (let i=0; i<this.state.parentContents.length; i++) {
@@ -410,7 +408,7 @@
 //                 }
 //                 this.setState({content})
 //             }
-//         }); 
+//         });
 //         this.doGetChildContents(event.target.textContent);
 //         this.setTagsByContent(event.target.textContent);
 //         this.checkMandatoryFields();
@@ -420,7 +418,7 @@
 //         const { contentType, tags, parentContents, childContents} = this.state;
 //         const { editcontent } = this.props;
 //         const statuses = ['active','draft', 'inactive'];
-        
+
 //         return (
 //             <>
 //             <div className="form-group">
@@ -432,7 +430,7 @@
 //                         <div className="col-xs-7">
 //                         {editcontent &&
 //                             <Select
-//                                 className="select"      
+//                                 className="select"
 //                                 value={this.state.content.content_type}
 //                                 disabled={true}>
 //                             {contentType.map(typeOption => (
@@ -540,7 +538,6 @@
 //                         }
 //                     </div>
 
-
 //                     <>
 //                     { editcontent &&
 //                     <div className="row">
@@ -575,14 +572,14 @@
 //                                 onChange={(event)=>this.handleContentPublish(event)}
 //                                 name="publish"
 //                                 >
-//                                 <FormControlLabel 
+//                                 <FormControlLabel
 //                                 className="radio-btn"
-//                                     value="true" 
-//                                     control={<Radio />} 
+//                                     value="true"
+//                                     control={<Radio />}
 //                                     label="Yes" />
-//                                 <FormControlLabel 
-//                                     value="false" 
-//                                     control={<Radio />} 
+//                                 <FormControlLabel
+//                                     value="false"
+//                                     control={<Radio />}
 //                                     label="No" />
 //                             </RadioGroup>
 //                         </div>
@@ -590,8 +587,6 @@
 //                     }
 //                     </>
 
-
-                    
 //                     { this.state.content.content_type &&
 //                     <div className="row">
 //                         <div className="col-xs-5">
@@ -604,17 +599,17 @@
 //                                 onChange={this.handleContentHasParent}
 //                                 name="gender1"
 //                                 >
-//                                 <FormControlLabel 
-//                                     value="true" 
-//                                     control={<Radio />} 
+//                                 <FormControlLabel
+//                                     value="true"
+//                                     control={<Radio />}
 //                                     label="Yes" />
-//                                 <FormControlLabel 
-//                                     value="false" 
-//                                     control={<Radio />} 
+//                                 <FormControlLabel
+//                                     value="false"
+//                                     control={<Radio />}
 //                                     label="No" />
 //                             </RadioGroup>
 //                         </div>
-//                     </div> 
+//                     </div>
 //                     }
 
 //                     { this.state.content.has_parent === "true" &&
@@ -645,9 +640,9 @@
 //                         {childContents.map(child => (
 //                             <Button variant="outlined" value={child.content_name} onClick={this.onLoadChildContent}>
 //                                 {child.content_name}
-//                             </Button>        
+//                             </Button>
 //                         ))}
-                        
+
 //                         </div>
 //                     </div>
 //                     }
@@ -670,7 +665,6 @@
 //                         </div>
 //                     </div>
 
-
 //             </form>
 //         </div>
 //         </>
@@ -678,18 +672,7 @@
 //     }
 // }
 
-  
 // export default CreateContent;
-
-
-
-
-
-
-
-
-
-
 
 // import React, { Component } from "react";
 // import { Tabs, Tab, Modal, Button } from 'react-bootstrap';
@@ -745,7 +728,7 @@
 //         this.goToPrevPage = this.goToPrevPage.bind(this);
 //         this.handleUpdateContent = this.handleUpdateContent.bind(this);
 //         this.enableSubmit = this.enableSubmit.bind(this);
-//     } 
+//     }
 
 //     doGetContents(payload) {
 //       let promise;
@@ -765,7 +748,7 @@
 //           for (let i=0; i<resData.length; i++) {
 //             resData[i].create_ts = moment(resData[i].create_ts).format("MM-DD-YYYY");
 //             if (resData[i].content_status === 'active') {
-//               contents.active.push(resData[i]);     
+//               contents.active.push(resData[i]);
 //             } else if (resData[i].content_status === 'draft') {
 //               contents.draft.push(resData[i]);
 //             } else if (resData[i].content_status === 'inactive') {
@@ -793,7 +776,7 @@
 
 //     onEditContent(row) {
 //       this.state.editContentData = row.original;
-//       this.state.showEdit = true; 
+//       this.state.showEdit = true;
 //     }
 
 //     onDocumentLoadSuccess = ({ numPages }) => {
@@ -805,7 +788,7 @@
 //         this.setState(state => ({ pageNumber: state.pageNumber - 1 }));
 //       }
 //     }
-    
+
 //     goToNextPage() {
 //       if (this.state.numPages >= this.state.pageNumber+1) {
 //         this.setState(state => ({ pageNumber: state.pageNumber + 1 }));
@@ -858,21 +841,21 @@
 //       });
 //     }
 
-//     enableSubmit(isValid){        
+//     enableSubmit(isValid){
 //       this.setState({enableSubmitBtn: isValid})
-//     }   
+//     }
 //     handleChangedFile(event){
 //       this.setState({
 //         ...this.state,
 //         isChangedFile:event
 //       });
-//     }   
+//     }
 //     render() {
-//         const {contents, contentUrl, pageNumber, numPages} = this.state;       
+//         const {contents, contentUrl, pageNumber, numPages} = this.state;
 //         const activeData = contents.active;
 //         const draftData = contents.draft;
 //         const inactiveData = contents.inactive;
-          
+
 //           const columns = [{
 //             Header: 'Content Name',
 //             id: "name",
@@ -943,7 +926,7 @@
 //                   defaultPageSize={5}
 //               />
 //             }
-//             { this.fromViewProps.draft && 
+//             { this.fromViewProps.draft &&
 //               <ReactTable
 //                   data={draftData}
 //                   columns={columns}
@@ -996,7 +979,6 @@
 //                   {contentUrl.content_type === 'Whitepaper' &&
 //                   <embed src={contentUrl.public_content_url+'#toolbar=0'} width="535" height="400"/>}
 
-
 //                   { contentUrl.content_type === 'Presentation' && <embed src={contentUrl.public_content_url+'#toolbar=0'} width="535" height="400"/>}
 //                   {contentUrl.content_type === 'Video' &&
 //                     <div className="videoplayer">
@@ -1024,8 +1006,8 @@
 //                   }
 //                   { contentUrl.content_type === 'Story' &&
 //                     <div>
-//                       <img src={contentUrl.public_content_url} 
-//                         width="500px" 
+//                       <img src={contentUrl.public_content_url}
+//                         width="500px"
 //                         height="360px"/>
 //                     </div>
 //                   }
@@ -1036,7 +1018,7 @@
 //                       </a>
 //                       <br/>
 //                       <iframe src={"https://docs.google.com/gview?url="+contentUrl.public_content_url+"&embedded=true"}
-//                            width='550px' 
+//                            width='550px'
 //                            height='400'>
 //                       </iframe>
 //                     </div>
@@ -1047,7 +1029,7 @@
 //                     <Button variant="secondary" onClick={this.handleClosePreview}>
 //                     Close
 //                     </Button>
-                    
+
 //                 </Modal.Footer>
 //                 </Modal>
 //               </div>
@@ -1057,10 +1039,10 @@
 //                     <Modal.Title>Edit Content</Modal.Title>
 //                 </Modal.Header>
 //                 <Modal.Body>
-//                     <CreateContent content={this.state.contentData} 
+//                     <CreateContent content={this.state.contentData}
 //                                     mandatory={this.enableSubmit}
 //                                     editcontent={this.state.editContentData}
-//                                     isChangedFileEvent={(event)=>this.handleChangedFile(event)}/>   
+//                                     isChangedFileEvent={(event)=>this.handleChangedFile(event)}/>
 //                 </Modal.Body>
 //                 <Modal.Footer>
 //                     <Button variant="secondary" onClick={this.handleCloseContent}>

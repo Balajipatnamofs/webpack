@@ -4,13 +4,13 @@ import axiosInstance from "../../axios.config";
 export const loginSuccess = (isAuth) => {
   return {
     type: actionTypes.LOGIN_SUCCESS,
-    isAuth: isAuth,
+    isAuth: isAuth
   };
 };
 export const loginError = (error) => {
   return {
     type: actionTypes.LOGIN_ERROR,
-    error: error,
+    error: error
   };
 };
 export const logout = (isAuth) => {
@@ -18,7 +18,7 @@ export const logout = (isAuth) => {
     localStorage.removeItem("auth");
     dispatch(loginSuccess(false));
     return {
-      type: actionTypes.LOGOUT,
+      type: actionTypes.LOGOUT
     };
   };
 };
