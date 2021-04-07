@@ -28,8 +28,8 @@
     "build": "webpack --mode production --progress",
     "stats": "webpack --profile --json > stats.json && webpack-bundle-analyzer stats.json dist",
     "serve": "serve dist",
-    "format": "prettier --write src/**/*.{js,jsx}",
-    "lint": "eslint src/**/*.{js,jsx} --fix"
+    "lint": "eslint --ext .ts,.tsx",
+    "lint:fix": "npm run lint -- --fix"
   },
   "husky": {
     "hooks": {
@@ -37,9 +37,9 @@
     }
   },
   "lint-staged": {
-    "./src/*.{js,jsx,ts,tsx}": [
-      "npx prettier --write",
-      "eslint src/*.js --fix-dry-run"
+    "app/**/*.(ts|tsx)": [
+      "npm run --silent lint:fix",
+      "git add"
     ]
   },
   "devDependencies": {

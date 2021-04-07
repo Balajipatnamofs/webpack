@@ -10,10 +10,24 @@ module.exports = {
         test: /\.(s*)css$/, // match any .scss or .css file,
         use: ["style-loader", "css-loader", "sass-loader"]
       },
+      /**
+       * ESLINT
+       * First, run the linter.
+       * It's important to do this before Babel processes the JS.
+       * Only testing .ts and .tsx files (React code)
+       */
       {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        loader: "eslint-loader"
+        test: /\.(ts|tsx)$/,
+        enforce: "pre",
+        use: [
+          {
+            options: {
+              eslintPath: require.resolve("eslint")
+            },
+            loader: require.resolve("eslint-loader")
+          }
+        ],
+        exclude: /node_modules/
       }
     ]
   },
