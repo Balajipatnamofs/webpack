@@ -1,0 +1,7 @@
+@import './main.scss';
+@media(max-width:500px){
+  .main-div{
+    max-width: 100% !important;
+    width: 70%;
+  }
+}

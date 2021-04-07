@@ -1,0 +1,88 @@
+{
+  "name": "react-xnmypu",
+  "version": "0.0.0",
+  "private": true,
+  "dependencies": {
+    "@material-ui/core": "3.8.3",
+    "@material-ui/icons": "3.0.2",
+    "axios": "0.17.1",
+    "components": "0.1.0",
+    "eslint-loader": "^4.0.2",
+    "eslint-plugin-react": "^7.23.1",
+    "react": "16.4.2",
+    "react-dom": "16.4.2",
+    "react-redux": "6.0.0",
+    "react-router": "3.0.5",
+    "react-router-dom": "4.3.1",
+    "react-router-redux": "4.0.8",
+    "react-transition-group": "2.5.3",
+    "redux": "4.0.1",
+    "redux-thunk": "2.3.0",
+    "rxjs": "^6.4.0",
+    "sass-loader": "^11.0.1",
+    "store": "2.0.12"
+  },
+  "scripts": {
+    "start": "webpack serve --open --compress --mode development --port 3000",
+    "dev": "webpack --mode development --progress",
+    "build": "webpack --mode production --progress",
+    "stats": "webpack --profile --json > stats.json && webpack-bundle-analyzer stats.json dist",
+    "serve": "serve dist",
+    "format": "prettier --write src/**/*.{js,jsx}",
+    "lint": "eslint src/**/*.{js,jsx} --fix"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.(js)": [
+      "eslint --fix",
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "devDependencies": {
+    "@babel/core": "^7.13.14",
+    "@babel/plugin-proposal-class-properties": "^7.13.0",
+    "@babel/plugin-transform-runtime": "^7.13.10",
+    "@babel/polyfill": "^7.12.1",
+    "@babel/preset-env": "^7.13.12",
+    "@babel/preset-react": "^7.13.13",
+    "babel-eslint": "^10.1.0",
+    "babel-loader": "^8.2.2",
+    "babel-plugin-import": "^1.13.3",
+    "css-loader": "^5.2.0",
+    "eslint": "^7.23.0",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-webpack-plugin": "^2.5.3",
+    "html-webpack-plugin": "^5.3.1",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.11",
+    "node-sass": "^5.0.0",
+    "prettier": "^2.0.5",
+    "serve": "^11.3.2",
+    "style-loader": "^2.0.0",
+    "webpack": "^5.30.0",
+    "webpack-bundle-analyzer": "^4.4.0",
+    "webpack-cli": "^4.6.0",
+    "webpack-dev-server": "^3.11.2"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

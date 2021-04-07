@@ -1,0 +1,86 @@
+<html>
+
+<head>
+    <style>
+        ul {
+            overflow: hidden;
+            padding: 0px;
+            position: absolute;
+            right: 0;
+            margin: 0;
+            width: 200px;
+            background: #000000c7;
+            list-style-type: none;
+            border-radius: 3px;
+            box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.33);
+        }
+
+        ul li {
+            font-family: cursive;
+            padding: 10px;
+            font-size: 17px;
+            font-weight: 500;
+            border-bottom: 1px solid #bab3b3ee;
+            border-width: 1;
+            color: #fff;
+            transition: 0.1s linear all;
+        }
+
+        ul li:hover {
+            background: #048cab;
+            color: white;
+            padding-left: 12px;
+        }
+
+        .righ-menu {
+            position: relative;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="righ-menu">
+        <ul id="menu">
+            <li>Go to next screen</li>
+            <li>Login</li>
+            <li>Logout</li>
+            <li>Logout1</li>
+        </ul>
+    </div>
+</body>
+<script>
+    let menu = document.getElementById('menu');
+    menu.style.display = 'none';
+    document.addEventListener('contextmenu', function (e) {
+        if (e.target.nodeName === 'LI') {
+            e.preventDefault();
+            e.stopPropagation();
+            return;
+        }
+        let subtractHeight = e.target.clientHeight - e.clientY;
+        let subtractWidth = e.target.clientWidth - e.clientX;
+        let clientY = e.clientY;
+        let clientX = e.clientX;
+        if (subtractHeight < menu.clientHeight) {
+            clientY = e.clientY - menu.clientHeight;
+        }
+        if (subtractWidth < menu.clientWidth && subtractWidth > 0) {
+            clientX = e.clientX - menu.clientWidth;
+        }
+        menu.style.left = clientX;
+        menu.style.top = clientY;
+        menu.style.display = 'block';
+        menu.style.transform = 'translateY(10)';
+        e.preventDefault();
+        e.stopPropagation();
+    }, false);
+    document.addEventListener('click', function (e) {
+        if (e.target.nodeName == 'LI' && e.target.parentNode.id == 'menu') {
+            console.log(e.target.innerText)
+        }
+        menu.style.display = 'none';
+        menu.style.transform = 'scale(1)';
+    });
+</script>
+
+</html>
