@@ -11,12 +11,11 @@ import AddPost from "../../components/post/add-post/add-post";
 import * as actions from "../../store/actions/index";
 import PageSpinner from "../../components/UI/spinner/spinner";
 
-import { Observable } from "rxjs";
-
 class PostList extends Component {
   constructor(props) {
     super(props);
     this.tableRef = React.createRef();
+    this.ref = React.createRef();
     this.state = {
       isBusy: true,
       openDialog: false,
@@ -28,7 +27,7 @@ class PostList extends Component {
       isUpdatePost: true
     };
   }
-  unsafe_componentwillmount() {
+  componentDidMount() {
     this.props.getAllPosts();
     setTimeout(() => {
       this.setState({
@@ -37,18 +36,7 @@ class PostList extends Component {
       });
     }, 1000);
   }
-  componentDidMount() {
-    const observable = new Observable((observer) => {
-      setTimeout(() => {
-        observer.next("Hello from a Observable!");
-      }, 2000);
-      setTimeout(() => {
-        observer.complete("Completed the Observable!");
-      }, 1000);
-    });
 
-    observable.subscribe((value) => value);
-  }
   deletePost = (event, param, param1) => {
     if (event) {
       event.stopPropagation();
@@ -122,7 +110,7 @@ class PostList extends Component {
         <section className="post-list">
           <div className="row">
             <div className="col-lg-7 col-sm-7 col-md-7 col-xs-7">
-              <Card className="post-table">
+              <Card className="post-table" ref={this.ref}>
                 {!this.state.isBusy ? (
                   <CardContent>
                     <table className="table table-striped">
