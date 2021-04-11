@@ -1,5 +1,5 @@
 import React from "react";
-import { render } from "react-dom";
+import { hydrate } from "react-dom";
 
 import { BrowserRouter as Router } from "react-router-dom";
 
@@ -14,5 +14,9 @@ const app = (
     </Router>
   </Provider>
 );
-
-render(app, document.getElementById("root"));
+// Render only in the browser, export otherwise
+if (typeof document === "undefined") {
+  module.exports = app;
+} else {
+  hydrate(app, document.getElementById("root"));
+}

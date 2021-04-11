@@ -15,6 +15,7 @@ class SignIn extends Component {
     };
   }
   componentDidMount() {
+    document.title = "sigin";
     // console.log('Component Mount');
   }
   componentDidUpdate(prevProps) {

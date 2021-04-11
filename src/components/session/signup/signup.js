@@ -12,6 +12,7 @@ class SignUp extends Component {
     };
   }
   componentDidMount() {
+    document.title = "sigup";
     // console.log('Component Mount');
     // if (localStorage.getItem('auth')) {
     //   this.props.history.push('/post-list');
