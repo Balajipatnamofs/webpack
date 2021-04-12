@@ -26,8 +26,8 @@
     "start": "webpack serve --hot --open --compress --mode development",
     "dev": "webpack --mode development --progress",
     "build": "webpack --mode production --progress",
-    "stats": "webpack --profile --json > stats.json && webpack-bundle-analyzer stats.json dist",
     "serve": "serve dist",
+    "stats": "webpack --profile --json > stats.json && webpack-bundle-analyzer stats.json dist",
     "format": "prettier --write src/**/*.{js,jsx}",
     "lint": "eslint src/**/*.{js,jsx} --fix"
   },
