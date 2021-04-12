@@ -23,7 +23,7 @@
     "store": "2.0.12"
   },
   "scripts": {
-    "start": "webpack serve --hot --open --compress --mode development --env NODE_ENV='production' --port 3000",
+    "start": "webpack serve --hot --open --compress --mode development",
     "dev": "webpack --mode development --progress",
     "build": "webpack --mode production --progress",
     "stats": "webpack --profile --json > stats.json && webpack-bundle-analyzer stats.json dist",
