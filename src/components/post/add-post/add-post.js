@@ -35,7 +35,7 @@ class AddPost extends Component {
     };
   }
   componentDidUpdate(prevProps) {
-    document.title = "add-post";
+    // document.title = "add-post";
     if (prevProps.prePostData !== this.props.prePostData) {
       if (this.props.prePostData) {
         let post = { ...this.props.prePostData };
