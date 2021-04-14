@@ -1,6 +1,23 @@
 const nodeExternals = require("webpack-node-externals");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const FriendlyErrorsWebpackPlugin = require("friendly-errors-webpack-plugin");
+const dev = process.env.NODE_ENV !== "production";
 
+const plugins = [
+  new FriendlyErrorsWebpackPlugin(),
+  new MiniCssExtractPlugin({
+    filename: "styles.css"
+  })
+];
+if (!dev) {
+  plugins.push(
+    new BundleAnalyzerPlugin({
+      analyzerMode: "static",
+      reportFilename: "webpack-report.html",
+      openAnalyzer: false
+    })
+  );
+}
 const common = {
   devtool: "cheap-module-source-map",
   module: {
@@ -33,7 +50,7 @@ const common = {
       }
     ]
   },
-  plugins: [new MiniCssExtractPlugin()]
+  plugins
 };
 
 module.exports = [
@@ -42,7 +59,7 @@ module.exports = [
     entry: "./src/client",
     output: {
       path: `${__dirname}/client`,
-      filename: "[name].[contenthash].js",
+      filename: "[name].bundle.js",
       clean: true
     }
   },

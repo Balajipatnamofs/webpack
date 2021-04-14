@@ -1,68 +1,68 @@
-import React from "react";
-import { renderToString } from "react-dom/server";
-import { ServerStyleSheets, ThemeProvider } from "@material-ui/core/styles";
 import express from "express";
-import reload from "reload";
-import App from "./app";
-import theme from "./theme";
-import { StaticRouter } from "react-router-dom";
+import path from "path";
+
+import React from "react";
+import serialize from "serialize-javascript";
+import { renderToString } from "react-dom/server";
+import { StaticRouter, matchPath } from "react-router-dom";
+import { Provider as ReduxProvider } from "react-redux";
+import Helmet from "react-helmet";
+import { ROUTES } from "./routes";
+import Layout from "./app";
+import createStore from "./store";
+
 const app = express();
 
-const port = 3001;
-const dev = process.env.NODE_ENV === "development";
+app.use(express.static(path.resolve(__dirname, "../dist")));
 
-app.use(express.static("public"));
+app.get("/*", (req, res) => {
+  const context = {};
+  const store = createStore();
 
-if (dev) {
-  reload(app);
-}
+  const dataRequirements = ROUTES.unAuth
+    .filter((route) => matchPath(req.url, route)) // filter matching paths
+    .map((route) => route.component) // map to components
+    .filter((comp) => comp.serverFetch) // check if components have data requirement
+    .map((comp) => store.dispatch(comp.serverFetch())); // dispatch data requirement
 
-app.use((req, res) => {
-  const sheets = new ServerStyleSheets();
-
-  const html = renderToString(
-    sheets.collect(
-      <ThemeProvider theme={theme}>
-        <StaticRouter location={req.url}>
-          <App />
+  Promise.all(dataRequirements).then(() => {
+    const jsx = (
+      <ReduxProvider store={store}>
+        <StaticRouter context={context} location={req.url}>
+          <Layout />
         </StaticRouter>
-      </ThemeProvider>
-    )
-  );
+      </ReduxProvider>
+    );
+    const reactDom = renderToString(jsx);
+    const reduxState = store.getState();
+    const helmetData = Helmet.renderStatic();
 
-  const css = sheets.toString();
-
-  res.send(
-    `
-    <!DOCTYPE html>
-    <html lang='en'>
-    <head>
-      <meta charset='utf-8'>
-      <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
-      <title>React App</title>
-      <style id='jss-styles'>${css}</style>
-      <link rel="stylesheet" type="text/css" href="./styles.css" />
-      <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-    />
-    </head>
-    <body>
-      <div id='root'>${html}</div>
-      <script src='main.js' async type = "text/babel"></script>
-      ${dev ? `<script src='/reload/reload.js' async></script>` : ""}
-    </body>
-    </html>
-  `.trim()
-  );
+    res.writeHead(200, { "Content-Type": "text/html" });
+    res.end(htmlTemplate(reactDom, reduxState, helmetData));
+  });
 });
 
-app.listen(port, () => `http://localhost:${port}`);
+app.listen(2048);
+
+function htmlTemplate(reactDom, reduxState, helmetData) {
+  return `
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="utf-8">
+            ${helmetData.title.toString()}
+            ${helmetData.meta.toString()}
+            <title>React SSR</title>
+            <link rel="stylesheet" type="text/css" href="./styles.css" />
+        </head>
+        
+        <body>
+            <div id="app">${reactDom}</div>
+            <script>
+                window.REDUX_DATA = ${serialize(reduxState, { isJSON: true })}
+            </script>
+            <script src="./app.bundle.js" type = "text/babel"></script>
+        </body>
+        </html>
+    `;
+}
