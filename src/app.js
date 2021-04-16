@@ -14,7 +14,7 @@ import SideMenu from "./components/UI/side-menu/side-menu";
 import Alert from "./components/UI/dialog/alert-dialog";
 import "./style.scss";
 import { CLIENT_ROUTES } from "../src/client-routes";
-import { Helmet } from "react-helmet";
+import Helmet, { HelmetProvider } from "react-helmet-async";
 
 class App extends Component {
   constructor() {
@@ -99,17 +99,12 @@ class App extends Component {
     }
     return (
       <>
-        <div>
-          <Helmet>
-            <title>Sign IN</title>
-          </Helmet>
-          {isAuthenticated}
-          <Alert
-            data={this.state.dialogData}
-            open={this.state.open}
-            closeDialog={(e) => this.handleClose(e)}
-          ></Alert>
-        </div>
+        {isAuthenticated}
+        <Alert
+          data={this.state.dialogData}
+          open={this.state.open}
+          closeDialog={(e) => this.handleClose(e)}
+        ></Alert>
       </>
     );
   }

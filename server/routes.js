@@ -5,13 +5,15 @@ module.exports = [
     path: "/sign-up",
     exact: true,
     component: lazy.asyncSignUp,
-    unAuth: true
+    unAuth: true,
+    meta: getMeta("Sign Up")
   },
   {
     path: "/sign-in",
     exact: true,
     component: lazy.asyncSignin,
-    unAuth: true
+    unAuth: true,
+    meta: getMeta("Sign In")
   },
 
   {
@@ -51,3 +53,10 @@ module.exports = [
     unAuth: false
   }
 ];
+
+function getMeta(title) {
+  return {
+    title: title,
+    description: "Bla Bla"
+  };
+}

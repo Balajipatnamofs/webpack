@@ -14,10 +14,7 @@ class SignIn extends Component {
       errorMsg: ""
     };
   }
-  componentDidMount() {
-    document.title = "sigin";
-    // console.log('Component Mount');
-  }
+  componentDidMount() {}
   componentDidUpdate(prevProps) {
     if (prevProps.error !== this.props.error) {
       this.setState({
