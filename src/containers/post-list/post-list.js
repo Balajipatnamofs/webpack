@@ -8,7 +8,7 @@ import CardContent from "@material-ui/core/CardContent";
 
 import Alert from "../../components/UI/dialog/alert-dialog";
 import AddPost from "../../components/post/add-post/add-post";
-// import * as actions from "../../store/actions/index";
+import * as actions from "../../store/actions/index";
 import PageSpinner from "../../components/UI/spinner/spinner";
 
 class PostList extends Component {

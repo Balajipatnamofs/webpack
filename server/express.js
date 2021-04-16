@@ -4,8 +4,12 @@ const path = require("path");
 const React = require("react");
 const ReactDOMServer = require("react-dom/server");
 const { StaticRouter, matchPath } = require("react-router-dom");
+import serialize from "serialize-javascript";
+
 import App from "../src/app";
 import { HelmetProvider } from "react-helmet-async";
+import createStore from "../src/store";
+import { Provider as ReduxProvider } from "react-redux";
 
 // create express application
 const app = express();
@@ -17,20 +21,24 @@ const routes = require("./routes");
 
 // serve static assets
 app.get(
-  /\.(js|css|map|ico)$/,
+  /\.(js|css|map|ico|svg|jpg)$/,
   express.static(path.resolve(__dirname, "../dist"))
 );
 
 // for any other requests, send `index.html` as a response
 app.use("*", async (req, res) => {
+  // Redux Store
+  const store = createStore();
+
+  // fetch data of the matched component
+  let componentData = {};
+
   if (typeof window === "undefined") {
     global.window = {};
   }
   // get matched route
   const matchRoute = routes.find((route) => matchPath(req.originalUrl, route));
 
-  // fetch data of the matched component
-  let componentData = {};
   // if (
   //   typeof matchRoute &&
   //   matchRoute.component &&
@@ -46,20 +54,17 @@ app.use("*", async (req, res) => {
       encoding: "utf8"
     }
   );
-  const helmetContext = {};
 
   // get HTML string from the `App` component
   let appHTML = ReactDOMServer.renderToString(
-    // <StaticRouter location={req.originalUrl} context={componentData}>
-    <HelmetProvider context={helmetContext}>
-      {" "}
+    <ReduxProvider store={store}>
       <StaticRouter location={req.originalUrl} context={componentData}>
         <App />
       </StaticRouter>
-    </HelmetProvider>
+    </ReduxProvider>
   );
-  const { helmet } = helmetContext;
 
+  const reduxState = store.getState();
   // populate `#app` element with `appHTML`
   indexHTML = indexHTML
     .replace('<div id="root"></div>', `<div id="root">${appHTML}</div>`)
@@ -73,6 +78,12 @@ app.use("*", async (req, res) => {
     "var initial_state = null;",
     `var initial_state = ${JSON.stringify(componentData)};`
   );
+  // set value of `initial_state` global variable
+  indexHTML = indexHTML.replace(
+    "var REDUX_DATA = null;",
+    `window.REDUX_DATA = ${serialize(reduxState, { isJSON: true })}`
+  );
+
   // set header and status
   res.contentType("text/html");
   res.status(200);

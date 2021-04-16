@@ -1,18 +1,32 @@
-.login{background: url(https://i.ytimg.com/vi/6hkamvjtbG4/maxresdefault.jpg); padding:10px;
-padding-top:100px;
-    height: 100vh;
-    overflow: hidden;
-        background-position: center center;
-    background-size: cover;
-     /* background: linear-gradient(rgba(0, 0, 0, 0.25), #020202, rgba(0, 0, 0, 0.54)), url(https://cdn.hipwallpaper.com/i/28/45/L4GzTV.jpg); */
-     }
+.login {
+  background: url("../../../assets/banner.jpg");
+  padding: 10px;
+  padding-top: 100px;
+  height: 100vh;
+  overflow: hidden;
+  background-position: center center;
+  background-size: cover;
+  /* background: linear-gradient(rgba(0, 0, 0, 0.25), #020202, rgba(0, 0, 0, 0.54)), url(https://cdn.hipwallpaper.com/i/28/45/L4GzTV.jpg); */
+}
 
-.form-heading { color:#fff; font-size:23px;}
-.panel{
+.form-heading {
+  color: #fff;
+  font-size: 23px;
+}
+.panel {
   background: none !important;
 }
-.panel h2{ color:#e83e8c; font-size:18px; margin:8px 0 8px 0;}
-.panel p { color:#777777; font-size:14px; margin-bottom:30px; line-height:24px;}
+.panel h2 {
+  color: #e83e8c;
+  font-size: 18px;
+  margin: 8px 0 8px 0;
+}
+.panel p {
+  color: #777777;
+  font-size: 14px;
+  margin-bottom: 30px;
+  line-height: 24px;
+}
 .login-form .form-control {
   background: #fff none repeat scroll 0 0;
   border: 1px solid #d4d4d4;
@@ -22,27 +36,30 @@ padding-top:100px;
   line-height: 40px;
 }
 .main-div {
-     background: #fff none repeat scroll 0 0;
-    border-radius: 5px;
-    margin: 10px auto 30px;
-    max-width: 22%;
-    padding: 30px;
-    box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+  background: #fff none repeat scroll 0 0;
+  border-radius: 5px;
+  margin: 10px auto 30px;
+  max-width: 22%;
+  padding: 30px;
+  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+    0 1px 5px 0 rgba(0, 0, 0, 0.12);
 }
-h6{
-  color:#000000 !important;
+h6 {
+  color: #000000 !important;
   font-weight: bold !important;
 }
 .login-form .form-group {
-  margin-bottom:10px;
+  margin-bottom: 10px;
 }
-.login-form{ text-align:center;}
+.login-form {
+  text-align: center;
+}
 .forgot a {
   color: #777777;
   font-size: 14px;
   text-decoration: underline;
 }
-.login-form  .btn.btn-primary {
+.login-form .btn.btn-primary {
   background: #e83e8c none repeat scroll 0 0;
   border-color: #e83e8c;
   color: #ffffff;
@@ -53,7 +70,8 @@ h6{
   padding: 0;
 }
 .forgot {
-  text-align: left; margin-bottom:30px;
+  text-align: left;
+  margin-bottom: 30px;
 }
 .botto-text {
   color: #ffffff;
@@ -63,16 +81,26 @@ h6{
 .login-form .btn.btn-primary.reset {
   background: #e83e8c none repeat scroll 0 0;
 }
-.back { text-align: left; margin-top:10px;}
-.back a {color: #444444; font-size: 13px;text-decoration: none;}
-.form-group{
-text-align: left;
+.back {
+  text-align: left;
+  margin-top: 10px;
 }
-.form-group span{
-font-size:12px;
+.back a {
+  color: #444444;
+  font-size: 13px;
+  text-decoration: none;
 }
-.img-thumbnail{
-    background-color: #e83e8c !important;
-    border: 1px solid #ffffff !important;
+.form-group {
+  text-align: left;
 }
-
+.form-group span {
+  font-size: 12px;
+}
+.img-thumbnail {
+  background-color: #000 !important;
+  height: 62px;
+  margin: auto;
+  width: 100%;
+  max-width: 200px;
+  display: flex;
+}

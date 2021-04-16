@@ -29,20 +29,17 @@ let CLIENT_ROUTES = [
   {
     path: "/user-list",
     exact: true,
-    component: lazy.asyncUser,
-    unAuth: false
+    component: lazy.asyncUser
   },
   {
     path: "/post-list/posts/:id",
     exact: true,
-    component: lazy.asyncPostDetails,
-    unAuth: false
+    component: lazy.asyncPostDetails
   },
   {
     path: "/post-list",
     exact: true,
-    component: lazy.asyncPost,
-    unAuth: false
+    component: lazy.asyncPost
   },
   {
     path: "/",

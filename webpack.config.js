@@ -28,13 +28,17 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.(s*)css$/,
+        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"]
+      },
+      {
         test: /\.jsx?$/,
         exclude: /node_modules/,
         use: ["babel-loader"]
       },
       {
-        test: /\.(s*)css$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"]
+        test: /\.(jpe?g|png|gif|svg)$/i,
+        loader: "file-loader"
       }
     ]
   },
@@ -43,7 +47,7 @@ module.exports = {
   plugins: [
     // extract css to external stylesheet file
     new MiniCssExtractPlugin({
-      filename: "build/styles.css"
+      filename: "styles.css"
     }),
 
     // prepare HTML file with assets
@@ -51,17 +55,17 @@ module.exports = {
       filename: "index.html",
       template: path.resolve(__dirname, "src/index.html"),
       minify: false
-    })
+    }),
 
     // copy static files from `src` to `dist`
-    // new CopyWebpackPlugin({
-    //   patterns: [
-    //     {
-    //       from: path.resolve(__dirname, "src/assets"),
-    //       to: path.resolve(__dirname, "dist/assets")
-    //     }
-    //   ]
-    // })
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: path.resolve(__dirname, "src/assets"),
+          to: path.resolve(__dirname, "dist/assets")
+        }
+      ]
+    })
   ],
 
   // resolve files configuration
@@ -89,7 +93,8 @@ module.exports = {
   // development server configuration
   devServer: {
     port: 8088,
-    historyApiFallback: true
+    historyApiFallback: true,
+    hot: true
   },
 
   // generate source map
