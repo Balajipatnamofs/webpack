@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 
-import * as actions from "../../../store/actions/index";
+// import * as actions from "../../../store/actions/index";
 
 import "./signin.css";
 class SignIn extends Component {
@@ -132,15 +132,15 @@ class SignIn extends Component {
     );
   }
 }
-const mapStateToProps = (state) => {
-  return {
-    isAuth: state.auth.isAuth ? state.auth.isAuth : null,
-    error: state.auth.error
-  };
-};
-const mapDispatchToProps = (dispatch) => {
-  return {
-    loginUser: (req) => dispatch(actions.loginUser(req))
-  };
-};
-export default connect(mapStateToProps, mapDispatchToProps)(SignIn);
+// const mapStateToProps = (state) => {
+//   return {
+//     isAuth: state.auth.isAuth ? state.auth.isAuth : null,
+//     error: state.auth.error
+//   };
+// };
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     loginUser: (req) => dispatch(actions.loginUser(req))
+//   };
+// };
+export default SignIn;

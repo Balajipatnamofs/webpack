@@ -1,57 +1,97 @@
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const ESLintPlugin = require("eslint-webpack-plugin");
+const path = require("path");
+const HTMLWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 
-module.exports = () => {
-  return {
-    devtool: "cheap-module-source-map",
-    mode: "production",
-    entry: "./src/index.js",
-    module: {
-      rules: [
-        { test: /\.js$/, exclude: /node_modules/, loader: "babel-loader" },
-        {
-          test: /\.(s*)css$/, // match any .scss or .css file,
-          use: ["style-loader", "css-loader", "sass-loader"]
-        },
-        /**
-         * ESLINT
-         * First, run the linter.
-         * It's important to do this before Babel processes the JS.
-         * Only testing .ts and .tsx files (React code)
-         */
-        {
-          test: /\.(ts|tsx)$/,
-          enforce: "pre",
-          use: [
-            {
-              options: {
-                eslintPath: require.resolve("eslint")
-              },
-              loader: require.resolve("eslint-loader")
-            }
-          ],
-          exclude: /node_modules/
-        }
-      ]
-    },
-    optimization: {
-      usedExports: true
-    },
-    output: {
-      filename: "[name].[contenthash].js",
-      clean: true
-    },
-    devServer: {
-      compress: false,
-      historyApiFallback: true,
-      hot: true,
-      port: 3001
-    },
-    plugins: [
-      new HtmlWebpackPlugin({
-        template: "public/index.html"
-      }),
-      new ESLintPlugin()
+/*-------------------------------------------------*/
+
+module.exports = {
+  // webpack optimization mode
+  mode: "development" === process.env.NODE_ENV ? "development" : "production",
+  // entry files
+  entry:
+    "development" === process.env.NODE_ENV
+      ? [
+          "./src/index.dev.js" // in development
+        ]
+      : [
+          "./src/index.prod.js" // in production
+        ],
+
+  // output files and chunks
+  output: {
+    path: path.resolve(__dirname, "dist"),
+    filename: "build/[name].bundle.js",
+    clean: true
+  },
+  // module/loaders configuration
+  module: {
+    rules: [
+      {
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        use: ["babel-loader"]
+      },
+      {
+        test: /\.(s*)css$/,
+        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"]
+      }
     ]
-  };
+  },
+
+  // webpack plugins
+  plugins: [
+    // extract css to external stylesheet file
+    new MiniCssExtractPlugin({
+      filename: "build/styles.css"
+    }),
+
+    // prepare HTML file with assets
+    new HTMLWebpackPlugin({
+      filename: "index.html",
+      template: path.resolve(__dirname, "src/index.html"),
+      minify: false
+    })
+
+    // copy static files from `src` to `dist`
+    // new CopyWebpackPlugin({
+    //   patterns: [
+    //     {
+    //       from: path.resolve(__dirname, "src/assets"),
+    //       to: path.resolve(__dirname, "dist/assets")
+    //     }
+    //   ]
+    // })
+  ],
+
+  // resolve files configuration
+  resolve: {
+    // file extensions
+    extensions: [".js", ".jsx", ".scss"]
+  },
+
+  // webpack optimizations
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        default: false,
+        vendors: false,
+
+        vendor: {
+          chunks: "all", // both : consider sync + async chunks for evaluation
+          name: "vendor", // name of chunk file
+          test: /node_modules/ // test regular expression
+        }
+      }
+    }
+  },
+
+  // development server configuration
+  devServer: {
+    port: 8088,
+    historyApiFallback: true
+  },
+
+  // generate source map
+  devtool: "source-map"
 };

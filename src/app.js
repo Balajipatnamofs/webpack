@@ -7,12 +7,14 @@ import {
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 
-import * as actions from "./store/actions/index";
+// import * as actions from "./store/actions/index";
 import * as lazy from "./components/constants/lazy-pages";
 import NavBarComponent from "./components/UI/nav-bar/nav-bar";
 import SideMenu from "./components/UI/side-menu/side-menu";
 import Alert from "./components/UI/dialog/alert-dialog";
 import "./style.scss";
+import { CLIENT_ROUTES } from "../src/client-routes";
+import { Helmet } from "react-helmet";
 
 class App extends Component {
   constructor() {
@@ -32,11 +34,11 @@ class App extends Component {
   handleClose = (param) => {
     this.setState({ open: false });
     if (param) {
-      this.props.onLogout();
+      // this.props.onLogout();
     }
   };
   componentDidMount() {
-    this.props.onTryAutoSignup();
+    // this.props.onTryAutoSignup();
   }
   logout = () => {
     this.setState({ open: true });
@@ -54,55 +56,73 @@ class App extends Component {
     let isAuthenticated;
     // console.log(this.props)
     if (this.props.isAuth) {
-      isAuthenticated = (
-        <div className="main-content">
-          <SideMenu />
-          <NavBarComponent logoutApp={this.logout.bind(this)} />
-          <main ref={this.paneDidMount}>
-            <Switch>
-              <Route path="/user-list" component={lazy.asyncUser} />
-              <Route
-                path="/post-list/posts/:id"
-                component={lazy.asyncPostDetails}
-              />
-              <Route path="/post-list" component={lazy.asyncPost} />
-              <Route path="/" exact component={lazy.asyncPost} />
-              <Redirect to="/post-list" />
-            </Switch>
-          </main>
-        </div>
-      );
+      <Switch>
+        {CLIENT_ROUTES.map((val, index) => {
+          return !val.isRedirect && !val.unAuth ? (
+            <Route {...val} key={"routes-" + index} />
+          ) : (
+            <Redirect to={val.path} key={"routes-" + index} />
+          );
+        })}
+      </Switch>;
+
+      // isAuthenticated = (
+      //   <div className="main-content">
+      //     <SideMenu />
+      //     <NavBarComponent logoutApp={this.logout.bind(this)} />
+      //     <main ref={this.paneDidMount}>
+      //       <Switch>
+      //         <Route path="/user-list" component={lazy.asyncUser} />
+      //         <Route
+      //           path="/post-list/posts/:id"
+      //           component={lazy.asyncPostDetails}
+      //         />
+      //         <Route path="/post-list" component={lazy.asyncPost} />
+      //         <Route path="/" exact component={lazy.asyncPost} />
+      //         <Redirect to="/post-list" />
+      //       </Switch>
+      //     </main>
+      //   </div>
+      // );
     } else {
       isAuthenticated = (
         <Switch>
-          <Route path="/sign-in" component={lazy.asyncSignin} />
-          <Route path="/sign-up" component={lazy.asyncSignUp} />
-          <Route path="/" exact component={lazy.asyncSignin} />
-          <Redirect to="/sign-in" />
+          {CLIENT_ROUTES.map((val, index) => {
+            return !val.isRedirect && val.unAuth ? (
+              <Route {...val} key={"routes-" + index} />
+            ) : (
+              <Redirect to={val.path} key={"routes-" + index} />
+            );
+          })}
         </Switch>
       );
     }
     return (
-      <Fragment>
-        <Router>{isAuthenticated}</Router>
-        <Alert
-          data={this.state.dialogData}
-          open={this.state.open}
-          closeDialog={(e) => this.handleClose(e)}
-        ></Alert>
-      </Fragment>
+      <>
+        <div>
+          <Helmet>
+            <title>Sign IN</title>
+          </Helmet>
+          {isAuthenticated}
+          <Alert
+            data={this.state.dialogData}
+            open={this.state.open}
+            closeDialog={(e) => this.handleClose(e)}
+          ></Alert>
+        </div>
+      </>
     );
   }
 }
-const mapStateToProps = (state) => {
-  return {
-    isAuth: state.auth.isAuth ? state.auth.isAuth : null
-  };
-};
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onTryAutoSignup: () => dispatch(actions.authCheckState()),
-    onLogout: () => dispatch(actions.logout(false))
-  };
-};
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+// const mapStateToProps = (state) => {
+//   return {
+//     isAuth: state.auth.isAuth ? state.auth.isAuth : null
+//   };
+// };
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     onTryAutoSignup: () => dispatch(actions.authCheckState()),
+//     onLogout: () => dispatch(actions.logout(false))
+//   };
+// };
+export default App;
