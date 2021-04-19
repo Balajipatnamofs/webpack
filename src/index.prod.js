@@ -8,10 +8,8 @@ import { Provider } from "react-redux";
 import App from "./app";
 // compile App component in `#app` HTML element
 hydrate(
-  <Provider store={store}>
-    <Router>
-      <App />
-    </Router>
-  </Provider>,
+  <Router>
+    <App />
+  </Router>,
   document.getElementById("root")
 );

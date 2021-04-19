@@ -4,12 +4,13 @@ const path = require("path");
 const React = require("react");
 const ReactDOMServer = require("react-dom/server");
 const { StaticRouter, matchPath } = require("react-router-dom");
-import serialize from "serialize-javascript";
+// import serialize from "serialize-javascript";
 
+// import App from "../src/app";
 import App from "../src/app";
-import { HelmetProvider } from "react-helmet-async";
+// import { HelmetProvider } from "react-helmet-async";
 import createStore from "../src/store";
-import { Provider as ReduxProvider } from "react-redux";
+// import { Provider as ReduxProvider } from "react-redux";
 
 // create express application
 const app = express();
@@ -57,11 +58,11 @@ app.use("*", async (req, res) => {
 
   // get HTML string from the `App` component
   let appHTML = ReactDOMServer.renderToString(
-    <ReduxProvider store={store}>
-      <StaticRouter location={req.originalUrl} context={componentData}>
-        <App />
-      </StaticRouter>
-    </ReduxProvider>
+    // <ReduxProvider store={store}>
+    <StaticRouter location={req.originalUrl} context={componentData}>
+      <App />
+    </StaticRouter>
+    // </ReduxProvider>
   );
 
   const reduxState = store.getState();
@@ -79,10 +80,10 @@ app.use("*", async (req, res) => {
     `var initial_state = ${JSON.stringify(componentData)};`
   );
   // set value of `initial_state` global variable
-  indexHTML = indexHTML.replace(
-    "var REDUX_DATA = null;",
-    `window.REDUX_DATA = ${serialize(reduxState, { isJSON: true })}`
-  );
+  // indexHTML = indexHTML.replace(
+  //   "var REDUX_DATA = null;",
+  //   `window.REDUX_DATA = ${serialize(reduxState, { isJSON: true })}`
+  // );
 
   // set header and status
   res.contentType("text/html");
@@ -90,9 +91,9 @@ app.use("*", async (req, res) => {
   return res.send(indexHTML);
 });
 
-// run express server on port 9000
+// run express server on port 9002
 app.listen("9002", () => {
-  console.log("Express server started at http://localhost:9000");
+  console.log("Express server started at http://localhost:9002");
 });
 
 function updateMeta(route) {
@@ -113,7 +114,7 @@ function updateMeta(route) {
         <meta property="og:description" content="${
           meta && meta.description ? meta.description : "Home"
         }" />
-        <meta property="og:image" content="../src/assets/logo.svg" />
+        <meta property="og:image" content=${"../src/assets/logo.svg"} />
         <meta property="og:site_name" content="European Travel, Inc." />
         <meta name="twitter:title" content="${
           meta && meta.title ? meta.title : "Home"
@@ -121,7 +122,7 @@ function updateMeta(route) {
         <meta name="twitter:description" content="${
           meta && meta.description ? meta.description : "Home"
         }" />
-        <meta name="twitter:image" content="../src/assets/logo.svg" />
+        <meta name="twitter:image" content=${"../src/assets/logo.svg"} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:image:alt" content="Alt text for image" />`;
 }

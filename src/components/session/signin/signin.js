@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
-import { connect } from "react-redux";
+// import { connect } from "react-redux";
 
-import * as actions from "../../../store/actions/index";
-import avatar from "../../../assets/logo.svg";
+// import * as actions from "../../../store/actions/index";
 import "./signin.css";
 class SignIn extends Component {
   constructor(props) {
@@ -77,7 +76,12 @@ class SignIn extends Component {
     ) : null;
     return (
       <div className="login">
-        <img src={avatar} className="img-thumbnail" height="50" width="50" />
+        <img
+          src="../../../assets/logo.svg"
+          className="img-thumbnail"
+          height="50"
+          width="50"
+        />
         <div className="login-form">
           <div className="main-div">
             <div className="panel">
@@ -129,15 +133,16 @@ class SignIn extends Component {
     );
   }
 }
-const mapStateToProps = (state) => {
-  return {
-    isAuth: state.auth.isAuth ? state.auth.isAuth : null,
-    error: state.auth.error
-  };
-};
-const mapDispatchToProps = (dispatch) => {
-  return {
-    loginUser: (req) => dispatch(actions.loginUser(req))
-  };
-};
-export default connect(mapStateToProps, mapDispatchToProps)(SignIn);
+// const mapStateToProps = (state) => {
+//   return {
+//     isAuth: state.auth.isAuth ? state.auth.isAuth : null,
+//     error: state.auth.error
+//   };
+// };
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     loginUser: (req) => dispatch(actions.loginUser(req))
+//   };
+// };
+// export default connect(mapStateToProps, mapDispatchToProps)(SignIn);
+export default SignIn;
