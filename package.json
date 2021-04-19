@@ -3,25 +3,16 @@
   "version": "0.0.0",
   "private": true,
   "dependencies": {
-    "@material-ui/core": "3.8.3",
-    "@material-ui/icons": "3.0.2",
-    "axios": "0.17.1",
-    "eslint-loader": "^4.0.2",
-    "eslint-plugin-react": "^7.23.1",
-    "react": "16.4.2",
-    "react-dom": "16.4.2",
-    "react-helmet": "^6.1.0",
-    "react-helmet-async": "^1.0.7",
-    "react-redux": "6.0.0",
-    "react-router": "3.0.5",
-    "react-router-dom": "4.3.1",
-    "react-router-redux": "4.0.8",
-    "react-transition-group": "2.5.3",
+    "@material-ui/core": "4.11.3",
+    "@material-ui/icons": "4.11.2",
+    "axios": "0.21.1",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-redux": "7.2.3",
+    "react-router-dom": "5.2.0",
     "redux": "4.0.1",
     "redux-thunk": "2.3.0",
-    "rxjs": "^6.4.0",
-    "sass-loader": "^11.0.1",
-    "webpack-node-externals": "^2.5.2"
+    "sass-loader": "^11.0.1"
   },
   "scripts": {
     "start": "NODE_ENV=development webpack serve --open --compress",
@@ -29,6 +20,9 @@
     "start:ssr": "node server"
   },
   "devDependencies": {
+    "webpack-node-externals": "^2.5.2",
+    "eslint-loader": "^4.0.2",
+    "eslint-plugin-react": "^7.23.1",
     "@babel/core": "^7.13.14",
     "@babel/plugin-proposal-class-properties": "^7.13.0",
     "@babel/plugin-transform-runtime": "^7.13.10",

@@ -8,7 +8,6 @@ const { StaticRouter, matchPath } = require("react-router-dom");
 
 // import App from "../src/app";
 import App from "../src/app";
-// import { HelmetProvider } from "react-helmet-async";
 import createStore from "../src/store";
 // import { Provider as ReduxProvider } from "react-redux";
 
