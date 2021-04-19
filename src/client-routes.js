@@ -1,23 +1,26 @@
-import * as lazy from "../src/components/constants/lazy-pages";
+import UsersList from "./containers/user-list/user-list";
+import PostList from "./containers/post-list/post-list";
+import SignIn from "./components/session/signin/signin";
+import Signup from "./components/session/signup/signup";
+import PostDetails from "./components/post/post-details/post-details";
 
 let CLIENT_ROUTES = [
   {
     path: "/sign-up",
     exact: true,
-    component: lazy.asyncSignUp,
+    component: Signup,
     unAuth: true
   },
   {
     path: "/sign-in",
     exact: true,
-    component: lazy.asyncSignin,
+    component: SignIn,
     unAuth: true
   },
-
   {
     path: "/",
     exact: true,
-    component: lazy.asyncSignin,
+    component: SignIn,
     unAuth: true
   },
   {
@@ -29,22 +32,25 @@ let CLIENT_ROUTES = [
   {
     path: "/user-list",
     exact: true,
-    component: lazy.asyncUser
+    component: UsersList,
+    unAuth: false
   },
   {
     path: "/post-list/posts/:id",
     exact: true,
-    component: lazy.asyncPostDetails
+    component: PostDetails,
+    unAuth: false
   },
   {
     path: "/post-list",
     exact: true,
-    component: lazy.asyncPost
+    component: PostList,
+    unAuth: false
   },
   {
     path: "/",
     exact: true,
-    component: lazy.asyncPost,
+    component: PostList,
     unAuth: false
   }
 ];

@@ -25,37 +25,37 @@ module.exports = [
     exact: true,
     component: SignIn,
     unAuth: true
+  },
+  {
+    path: "/sign-in",
+    exact: true,
+    isRedirect: true,
+    unAuth: true
+  },
+  {
+    path: "/user-list",
+    exact: true,
+    component: UsersList,
+    unAuth: false
+  },
+  {
+    path: "/post-list/posts/:id",
+    exact: true,
+    component: PostDetails,
+    unAuth: false
+  },
+  {
+    path: "/post-list",
+    exact: true,
+    component: PostList,
+    unAuth: false
+  },
+  {
+    path: "/",
+    exact: true,
+    component: PostList,
+    unAuth: false
   }
-  // {
-  //   path: "/sign-in",
-  //   exact: true,
-  //   isRedirect: true,
-  //   unAuth: true
-  // },
-  // {
-  //   path: "/user-list",
-  //   exact: true,
-  //   component: UsersList,
-  //   unAuth: false
-  // },
-  // {
-  //   path: "/post-list/posts/:id",
-  //   exact: true,
-  //   component: PostDetails,
-  //   unAuth: false
-  // },
-  // {
-  //   path: "/post-list",
-  //   exact: true,
-  //   component: PostList,
-  //   unAuth: false
-  // },
-  // {
-  //   path: "/",
-  //   exact: true,
-  //   component: PostList,
-  //   unAuth: false
-  // }
 ];
 
 function getMeta(title) {

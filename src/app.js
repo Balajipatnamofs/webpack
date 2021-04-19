@@ -8,14 +8,12 @@ import React, { Component, Fragment } from "react";
 // import { connect } from "react-redux";
 
 // import * as actions from "./store/actions/index";
-// import * as lazy from "./components/constants/lazy-pages";
+
 import NavBarComponent from "./components/UI/nav-bar/nav-bar";
 import SideMenu from "./components/UI/side-menu/side-menu";
 import Alert from "./components/UI/dialog/alert-dialog";
 import "./style.scss";
 import { CLIENT_ROUTES } from "../src/client-routes";
-import SignIn from "./components/session/signin/signin";
-import SignUp from "./components/session/signup/signup";
 
 class App extends Component {
   constructor() {
@@ -75,16 +73,13 @@ class App extends Component {
     } else {
       isAuthenticated = (
         <Switch>
-          <Route path="/sign-up" component={SignUp} exact={true} />
-          <Route path="/sign-in" component={SignIn} exact={true} />
-          <Route path="/" component={SignIn} exact={true} />
-          {/* {CLIENT_ROUTES.map((val, index) => {
+          {CLIENT_ROUTES.map((val, index) => {
             return !val.isRedirect && val.unAuth ? (
               <Route {...val} key={"routes-" + index} />
             ) : (
               <Redirect to={val.path} key={"routes-" + index} />
             );
-          })} */}
+          })}
         </Switch>
       );
     }
